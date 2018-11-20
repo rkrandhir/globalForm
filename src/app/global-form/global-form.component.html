@@ -1,0 +1,26 @@
+<form novalidate [formGroup]="globalform" (ngSubmit)='onSubmit()'>
+  {{ globalform.value | json}}
+  <div class="row form-group">
+    <div class="col-sm-12">
+      <select name="" id="" class='form-control' formControlName="setting" (change)='getSetting($event)'>
+        <option value="auto">Automatic</option>
+        <option value="manual">Manual</option>
+      </select>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div formArrayName='ipAddress' class="col-xs-12" *ngFor="let item of this.globalform.controls.ipAddress.controls; let i=index">
+      <div [formGroupName]='i' class='row'>
+        <div class="col-xs-3"><input type='text' class="form-control" formControlName='a'></div>
+        <div class="col-xs-3"><input type='text' class="form-control" formControlName='b'></div>
+        <div class="col-xs-3"><input type='text' class="form-control" formControlName='c'></div>
+        <div class="col-xs-3"><input type='text' class="form-control" formControlName='d'></div>
+      </div>      
+    </div>
+  </div>
+  <div class="pull-right">
+    <button type="submit" [disabled]="!globalform.dirty" class="btn btn-primary margin-4">Submit</button>
+    <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
+  </div>
+</form>
+
